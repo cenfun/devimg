@@ -156,6 +156,13 @@ const Util = {
             err = e;
         });
         return [err, res];
+    },
+
+    getInvalidSvg: (w = 100, h = 30) => {
+        return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" stroke="#ddd" rx="8" fill="none" />
+            <text font-family="${Util.font}" x="${w / 2}" y="${h / 2}" alignment-baseline="central" text-anchor="middle">invalid</text>
+            </svg>`;
     }
 };
 

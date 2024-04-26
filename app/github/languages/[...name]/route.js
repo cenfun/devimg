@@ -234,10 +234,7 @@ const getLayout = (o) => {
 
 const getSvg = (targetName, data, options) => {
     if (!data) {
-        return `<svg width="100" height="30" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0.5" y="0.5" width="99" height="29" stroke="#ddd" rx="8" fill="none" />
-        <text font-family="${Util.font}" x="50" y="15" alignment-baseline="central" text-anchor="middle">invalid</text>
-        </svg>`;
+        return Util.getInvalidSvg();
     }
     const languages = data.languages;
 
