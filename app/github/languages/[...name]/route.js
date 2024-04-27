@@ -384,7 +384,7 @@ const getOptions = (searchParams) => {
         limit: 20,
         colors: defaultColors.join(','),
         bg: '#ffffff',
-        label: '{total} Used Languages - {name}',
+        label: '{name} - {total} used languages',
         output: 'svg'
     };
 

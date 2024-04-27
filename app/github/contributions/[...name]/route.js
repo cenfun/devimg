@@ -290,7 +290,7 @@ const getOptions = (searchParams) => {
         even: '#f6f8fa',
         axis: '#999999',
         bg: '#ffffff',
-        label: '{total} Contributions Past Year - {name}',
+        label: '{name} - {total} contributions past year',
         output: 'svg'
     };
 

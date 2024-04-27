@@ -3,8 +3,8 @@ import './github-markdown.css';
 export default function Home() {
 
     const labelDownloads = '{total}/month';
-    const labelContributions = '{total} Contributions Past Year - {name}';
-    const labelLanguages = '{total} Used Languages - {name}';
+    const labelContributions = '{name} - {total} contributions past year';
+    const labelLanguages = '{name} - {total} used languages';
 
     return (
         <div class="markdown-body">
