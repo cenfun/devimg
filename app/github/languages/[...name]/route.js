@@ -409,6 +409,15 @@ export async function GET(request) {
     // console.log(data);
     const options = getOptions(searchParams);
 
+    if (options.output === 'json') {
+        const content = data ? JSON.stringify(data) : '{ }';
+        return new Response(content, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     const svg = getSvg(targetName, data, options);
 
     return new Response(svg, {
