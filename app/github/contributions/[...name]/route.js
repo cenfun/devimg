@@ -316,21 +316,9 @@ export async function GET(request) {
     const options = getOptions(searchParams);
 
     if (options.output === 'json') {
-        const json = data || {};
-        json.options = options;
-        const content = JSON.stringify(json);
-        return new Response(content, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        return Util.responseJson(data, options);
     }
 
     const svg = getSvg(targetName, data, options);
-
-    return new Response(svg, {
-        headers: {
-            'Content-Type': 'image/svg+xml'
-        }
-    });
+    return Util.responseSvg(svg);
 }

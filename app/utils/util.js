@@ -163,6 +163,25 @@ const Util = {
             <rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" stroke="#ddd" rx="8" fill="none" />
             <text font-family="${Util.font}" x="${w / 2}" y="${h / 2}" alignment-baseline="central" text-anchor="middle">invalid</text>
             </svg>`;
+    },
+
+    responseJson: (data, options) => {
+        const json = data || {};
+        json.options = options;
+        const content = JSON.stringify(json);
+        return new Response(content, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    },
+
+    responseSvg: (svg) => {
+        return new Response(svg, {
+            headers: {
+                'Content-Type': 'image/svg+xml'
+            }
+        });
     }
 };
 
