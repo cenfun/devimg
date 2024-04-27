@@ -410,7 +410,9 @@ export async function GET(request) {
     const options = getOptions(searchParams);
 
     if (options.output === 'json') {
-        const content = data ? JSON.stringify(data) : '{ }';
+        const json = data || {};
+        json.options = options;
+        const content = JSON.stringify(json);
         return new Response(content, {
             headers: {
                 'Content-Type': 'application/json'
