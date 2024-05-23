@@ -14,6 +14,15 @@ body {
     align-items: center;
 }
 
+.title {
+    flex: auto;
+}
+
+.github,
+.github:visited {
+    color: #000;
+}
+
 .header {
     margin-top: 20px;
     margin-bottom: 15px;
