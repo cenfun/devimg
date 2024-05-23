@@ -184,6 +184,7 @@ const getPoints = (contributions, maxCount, maxValue, length, cw, ch, cy, paddin
 
 };
 
+// eslint-disable-next-line max-statements
 const getSvg = (targetName, data, options) => {
 
     if (!data) {
@@ -193,9 +194,10 @@ const getSvg = (targetName, data, options) => {
     const { dates, contributions } = data;
     const length = dates.length;
 
-    const color = options.color;
-    const axis = options.axis;
-    const bg = options.bg;
+    const color = Util.normalizeColor(options.color);
+    const even = Util.normalizeColor(options.even);
+    const axis = Util.normalizeColor(options.axis);
+    const bg = Util.normalizeColor(options.bg);
 
     // svg width
     const sw = Math.abs(Util.toNum(options.width, true));
@@ -229,8 +231,7 @@ const getSvg = (targetName, data, options) => {
     const tickHeight = 16;
     const ty = ay + tickHeight;
 
-    const { grid, ticksD } = getTicksData(dates, sw, ay, ch, padding, ppi, options.even, bg);
-
+    const { grid, ticksD } = getTicksData(dates, sw, ay, ch, padding, ppi, even, bg);
     const firstLabel = dates[0];
     const lastLabel = dates[length - 1];
 
@@ -286,10 +287,10 @@ const getOptions = (searchParams) => {
 
     const options = {
         width: 600,
-        color: '#44cc11',
-        even: '#f6f8fa',
-        axis: '#999999',
-        bg: '#ffffff',
+        color: '44cc11',
+        even: 'f6f8fa',
+        axis: '999999',
+        bg: 'ffffff',
         label: '{name} - {total} contributions past year',
         output: 'svg'
     };

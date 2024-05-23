@@ -7,3 +7,28 @@
 body {
     color: rgb(var(--foreground-rgb));
 }
+
+.inline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    font-weight: 600;
+    font-size: 1.5em;
+    border-radius: 5px;
+    background-color: #eaeef2;
+}
+
+.markdown-body details summary {
+    padding-bottom: 5px;
+}
+
+.markdown-body details {
+    margin-bottom: 5px;
+    margin-left: 15px;
+}

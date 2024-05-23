@@ -238,8 +238,9 @@ const getSvg = (targetName, data, options) => {
     }
     const languages = data.languages;
 
-    const bg = options.bg;
-    const colors = options.colors.split(',');
+    const bg = Util.normalizeColor(options.bg);
+    const colors = options.colors.split(',').filter((it) => it).map((c) => Util.normalizeColor(c));
+    // console.log(colors);
 
     const limit = Math.abs(Util.toNum(options.limit, true));
     if (languages.length > limit) {
@@ -383,7 +384,7 @@ const getOptions = (searchParams) => {
         width: 600,
         limit: 20,
         colors: defaultColors.join(','),
-        bg: '#ffffff',
+        bg: 'ffffff',
         label: '{name} - {total} used languages',
         output: 'svg'
     };

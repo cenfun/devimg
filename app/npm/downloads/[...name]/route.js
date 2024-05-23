@@ -70,8 +70,8 @@ const getSvg = (targetName, data, options) => {
     // svg height
     const sh = Math.abs(Util.toNum(options.height, true));
     const radius = options.radius;
-    const color = options.color;
-    const bg = data ? options.bg : '#aaa';
+    const color = Util.normalizeColor(options.color);
+    const bg = data ? Util.normalizeColor(options.bg) : '#aaa';
 
     const scale = 10;
     const vh = sh * scale;
@@ -145,7 +145,7 @@ const getSvg = (targetName, data, options) => {
 
     list.push('<linearGradient id="lg" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient>');
 
-    list.push(`<clipPath id="cp"><rect width="${vw}" height="${vh}" ry="${radius}" fill="#fff"/></clipPath>`);
+    list.push(`<clipPath id="cp"><rect width="${vw}" height="${vh}" ry="${radius}%" fill="#fff"/></clipPath>`);
 
     list.push(lineMask);
 
@@ -174,9 +174,9 @@ const getSvg = (targetName, data, options) => {
 const getOptions = (searchParams) => {
     const options = {
         height: 20,
-        radius: '15%',
-        color: '#44cc11',
-        bg: '#007ec6',
+        radius: 15,
+        color: '44cc11',
+        bg: '007ec6',
         label: '{total}/month',
         output: 'svg'
     };

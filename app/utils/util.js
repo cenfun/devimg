@@ -158,6 +158,26 @@ const Util = {
         return [err, res];
     },
 
+    normalizeColor: (str) => {
+        if (str) {
+            if (str.startsWith('#')) {
+                return str;
+            }
+
+            if (str.startsWith('0x')) {
+                return `#${str.slice(2)}`;
+            }
+
+            if ((/^([0-9a-f]{1,2}){3,4}$/i).test(str)) {
+                return `#${str}`;
+            }
+
+            return str;
+        }
+
+        return str;
+    },
+
     getInvalidSvg: (w = 100, h = 30) => {
         return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" stroke="#ddd" rx="8" fill="none" />
