@@ -140,6 +140,16 @@ export default function Home() {
         setLanguagesOptions(e.target.value);
     };
 
+    // =========================================================================
+
+    const relatedProjects = [
+        'https://github.com/badges/shields',
+        'https://github.com/badgen/badgen.net',
+        'https://github.com/anuraghazra/github-readme-stats',
+        'https://github.com/denvercoder1/github-readme-streak-stats',
+        'https://github.com/vn7n24fzkq/github-profile-summary-cards'
+    ];
+
     return (
         <div className="markdown-body">
             <h1>
@@ -292,7 +302,17 @@ export default function Home() {
                 </p>
             </details>
 
+            <div className="header">related projects</div>
+            <ul open>
+                {relatedProjects.map((it, i) => {
+                    return (
+                        <li key={i}><a href={it} target="_blank">{it}</a></li>
+                    );
+                })}
 
+            </ul>
+
+            <div className="footer"></div>
         </div>
     );
 }

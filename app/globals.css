@@ -33,6 +33,10 @@ body {
     background-color: #eaeef2;
 }
 
+.footer {
+    height: 30px;
+}
+
 .markdown-body details summary {
     padding-bottom: 5px;
 }
