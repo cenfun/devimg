@@ -147,7 +147,8 @@ export default function Home() {
         'https://github.com/badgen/badgen.net',
         'https://github.com/anuraghazra/github-readme-stats',
         'https://github.com/denvercoder1/github-readme-streak-stats',
-        'https://github.com/vn7n24fzkq/github-profile-summary-cards'
+        'https://github.com/vn7n24fzkq/github-profile-summary-cards',
+        'https://github.com/badges/awesome-badges'
     ];
 
     return (
