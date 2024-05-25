@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const Util = {
     font: 'Verdana,Helvetica,sans-serif',
