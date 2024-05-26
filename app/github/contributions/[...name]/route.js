@@ -18,6 +18,7 @@ const getContributions = async (targetName) => {
         query: `
           query userInfo($login: String!) {
             user(login: $login) {
+              name
               contributionsCollection {
                 contributionCalendar {
                   totalContributions
@@ -74,8 +75,10 @@ const getContributions = async (targetName) => {
 
     // console.log(contributions);
 
+    const name = Util.getValue(res, 'data.data.user.name');
+
     const contributionsData = {
-        name: targetName,
+        name: name || targetName,
         total,
         dates,
         contributions
@@ -205,7 +208,7 @@ const getSvg = (targetName, data, options) => {
 
     const label = Util.replace(options.label, {
         total: data.total.toLocaleString(),
-        name: targetName
+        name: data.name || targetName
     });
 
     // chart

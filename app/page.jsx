@@ -6,6 +6,7 @@ import IconGithub from './icons/github';
 import UsageNpmDownloads from './npm/downloads/usage';
 import UsageGithubContributions from './github/contributions/usage';
 import UsageGithubLanguages from './github/languages/usage';
+import UsageGithubProfile from './github/profile/usage';
 
 export default function Home() {
 
@@ -15,7 +16,8 @@ export default function Home() {
         'https://github.com/anuraghazra/github-readme-stats',
         'https://github.com/denvercoder1/github-readme-streak-stats',
         'https://github.com/vn7n24fzkq/github-profile-summary-cards',
-        'https://github.com/badges/awesome-badges'
+        'https://github.com/badges/awesome-badges',
+        'https://github.com/antonkomarev/github-profile-views-counter'
     ];
 
     return (
@@ -38,6 +40,7 @@ export default function Home() {
             <UsageNpmDownloads></UsageNpmDownloads>
             <UsageGithubContributions></UsageGithubContributions>
             <UsageGithubLanguages></UsageGithubLanguages>
+            <UsageGithubProfile></UsageGithubProfile>
 
             <div className="header">related projects</div>
             <ul open>

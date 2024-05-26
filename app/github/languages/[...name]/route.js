@@ -18,6 +18,7 @@ const getLanguages = async (targetName) => {
         query: `
           query userInfo($login: String!) {
             user(login: $login) {
+              name
               repositories(ownerAffiliations: OWNER, isFork: false, first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {
                 nodes {
                   languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -99,8 +100,10 @@ const getLanguages = async (targetName) => {
         item.percent = item.size / total;
     });
 
+    const name = Util.getValue(res, 'data.data.user.name');
+
     const languagesData = {
-        name: targetName,
+        name: name || targetName,
         languages
     };
 
@@ -253,7 +256,7 @@ const getSvg = (targetName, data, options) => {
 
     const label = Util.replace(options.label, {
         total: languages.length,
-        name: targetName
+        name: data.name || targetName
     });
 
     // bar

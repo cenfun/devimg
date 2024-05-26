@@ -105,6 +105,44 @@ const Util = {
         return v;
     },
 
+    NF: function(v) {
+        if (typeof v === 'number' && v) {
+            return v.toLocaleString();
+        }
+        return v;
+    },
+
+    ago: (date, now) => {
+        now = now || Date.now();
+        date = new Date(date);
+        const seconds = Math.max(0, Math.round((now - date) / 1000));
+
+        const times = [
+            seconds / 60 / 60 / 24 / 365,
+            seconds / 60 / 60 / 24 / 30,
+            seconds / 60 / 60 / 24 / 7,
+            seconds / 60 / 60 / 24,
+            seconds / 60 / 60,
+            seconds / 60,
+            seconds
+        ];
+        const names = ['year', 'month', 'week', 'day', 'hour', 'minute', 'second'];
+
+        for (let i = 0; i < names.length; i++) {
+            const time = Math.floor(times[i]);
+            let name = names[i];
+            if (time > 1) {
+                name += 's';
+            }
+
+            if (time >= 1) {
+                return `${time} ${name} ago`;
+            }
+        }
+
+        return 'just now';
+    },
+
     replace: function(str, obj, defaultValue) {
         str = `${str}`;
         if (!obj) {
