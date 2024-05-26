@@ -23,12 +23,17 @@ body {
     color: #000;
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
 .header {
     margin-top: 20px;
     margin-bottom: 15px;
     padding: 5px 10px;
     font-weight: 600;
     font-size: 1.5em;
+    text-transform: capitalize;
     border-radius: 5px;
     background-color: #eaeef2;
 }
@@ -39,6 +44,7 @@ body {
 
 .markdown-body details summary {
     padding-bottom: 5px;
+    text-transform: capitalize;
 }
 
 .markdown-body details {

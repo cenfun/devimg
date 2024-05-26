@@ -31,10 +31,11 @@ export default function Home() {
                 </div>
             </h1>
             <p>Generating npm or github status for profile README.</p>
-            <ul>
+            <ul className="capitalize">
                 <li><a href="#npm-downloads">npm downloads</a></li>
                 <li><a href="#github-contributions">github contributions</a></li>
                 <li><a href="#github-languages">github languages</a></li>
+                <li><a href="#github-profile">github profile</a></li>
             </ul>
 
             <UsageNpmDownloads></UsageNpmDownloads>
