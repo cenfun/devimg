@@ -257,7 +257,8 @@ const getSvg = (targetName, data, options) => {
     }, {
         label: 'Languages',
         value: topLanguages,
-        icon: ['M4.708 5.578 2.061 8.224l2.647 2.646-.708.708-3-3V7.87l3-3zm7-.708L11 5.578l2.647 2.646L11 10.87l.708.708 3-3V7.87zM4.908 13l.894.448 5-10L9.908 3z']
+        size: 24,
+        icon: ['M9 2.25a.75.75 0 0 1 .75.75v1.506a49 49 0 0 1 5.343.371.75.75 0 1 1-.186 1.489 47 47 0 0 0-1.99-.206 18.7 18.7 0 0 1-2.97 6.323q.476.576 1 1.107a.75.75 0 0 1-1.07 1.052A19 19 0 0 1 9 13.687a18.8 18.8 0 0 1-5.656 4.482.75.75 0 0 1-.688-1.333 17.3 17.3 0 0 0 5.396-4.353A18.7 18.7 0 0 1 5.89 8.598a.75.75 0 0 1 1.388-.568A17.2 17.2 0 0 0 9 11.224a17.2 17.2 0 0 0 2.391-5.165 48 48 0 0 0-8.298.307.75.75 0 0 1-.186-1.489 49 49 0 0 1 5.343-.371V3A.75.75 0 0 1 9 2.25M15.75 9a.75.75 0 0 1 .68.433l5.25 11.25a.75.75 0 1 1-1.36.634l-1.198-2.567h-6.744l-1.198 2.567a.75.75 0 0 1-1.36-.634l5.25-11.25A.75.75 0 0 1 15.75 9m-2.672 8.25h5.344l-2.672-5.726z']
     }, {
         label: 'Followers / Following',
         value: `${Util.KNF(data.followers.totalCount)} / ${Util.KNF(data.following.totalCount)}`,
@@ -300,8 +301,8 @@ const getSvg = (targetName, data, options) => {
 
     items.forEach((item) => {
         list.push(`<g transform="translate(${item.x},${item.y})" font-size="14" dominant-baseline="hanging">`);
-
-        list.push('<svg viewBox="0 0 16 16" width="16" height="16">');
+        const size = item.size || 16;
+        list.push(`<svg viewBox="0 0 ${size} ${size}" width="16" height="16">`);
         item.icon.forEach((d) => {
             list.push(`<path d="${d}"></path>`);
         });
