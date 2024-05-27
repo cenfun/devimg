@@ -99,15 +99,22 @@ const getProfile = async (targetName) => {
               }
               repositories(ownerAffiliations: OWNER, isFork: false, first: 100, orderBy: {direction: DESC, field: STARGAZERS}) {
                 totalCount
-                totalDiskUsage
                 nodes {
                   stargazers {
                     totalCount
                   }
+                  languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+                    edges {
+                      size
+                      node {
+                        name
+                      }
+                    }
+                  }
                 }
               }
             }
-          }
+          }          
         `,
         variables
     };
@@ -177,6 +184,21 @@ const updateLayout = (items, padding, sw, sh) => {
     return sh;
 };
 
+const getTopLanguages = (languages) => {
+    const list = [];
+    let per = 0;
+    for (let i = 0; i < languages.length; i++) {
+        const lang = languages[i];
+        per += lang.percent;
+        list.push(lang.name);
+        if (i >= 1 || per > 0.8) {
+            break;
+        }
+    }
+
+    return `${list.join('/')} ${Math.round(per * 100)}%`;
+};
+
 const getSvg = (targetName, data, options) => {
     if (!data) {
         return Util.getInvalidSvg();
@@ -206,6 +228,9 @@ const getSvg = (targetName, data, options) => {
         totalStars += node.stargazers.totalCount;
     });
 
+    const languages = Util.getLanguages(data.repositories.nodes);
+    const topLanguages = getTopLanguages(languages);
+
     const items = [{
         label: 'Total Repositories',
         value: Util.NF(data.repositories.totalCount),
@@ -230,13 +255,9 @@ const getSvg = (targetName, data, options) => {
         value: Util.NF(data.contributionsCollection.contributionCalendar.totalContributions),
         icon: ['M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z']
     }, {
-        label: 'Disk Usage',
-        // 1kB = 1000B 1kiB = 1024B
-        value: Util.KBF(data.repositories.totalDiskUsage * 1024),
-        icon: [
-            'M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0',
-            'M12.096 6.223A5 5 0 0 0 13 5.698V7c0 .289-.213.654-.753 1.007a4.5 4.5 0 0 1 1.753.25V4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.5 4.5 0 0 1-.813-.927Q8.378 15 8 15c-1.464 0-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13h.027a4.6 4.6 0 0 1 0-1H8c-1.464 0-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10q.393 0 .774-.024a4.5 4.5 0 0 1 1.102-1.132C9.298 8.944 8.666 9 8 9c-1.464 0-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777M3 4c0-.374.356-.875 1.318-1.313C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4'
-        ]
+        label: 'Languages',
+        value: topLanguages,
+        icon: ['M4.708 5.578 2.061 8.224l2.647 2.646-.708.708-3-3V7.87l3-3zm7-.708L11 5.578l2.647 2.646L11 10.87l.708.708 3-3V7.87zM4.908 13l.894.448 5-10L9.908 3z']
     }, {
         label: 'Followers / Following',
         value: `${Util.KNF(data.followers.totalCount)} / ${Util.KNF(data.following.totalCount)}`,

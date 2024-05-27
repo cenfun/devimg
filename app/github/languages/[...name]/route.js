@@ -62,43 +62,7 @@ const getLanguages = async (targetName) => {
         return;
     }
 
-    const map = new Map();
-    nodes.forEach((repo) => {
-        const edges = Util.getValue(repo, 'languages.edges');
-        if (edges) {
-            edges.forEach((item) => {
-                const name = item.node.name;
-                const size = item.size;
-                const lang = map.get(name);
-                if (lang) {
-                    map.set(name, lang + size);
-                } else {
-                    map.set(name, size);
-                }
-            });
-        }
-    });
-
-    let total = 0;
-    const languages = [];
-    map.forEach((v, k) => {
-        languages.push({
-            size: v,
-            name: k
-        });
-        total += v;
-    });
-
-    // clear for GC
-    map.clear();
-
-    languages.sort((a, b) => {
-        return b.size - a.size;
-    });
-
-    languages.forEach((item) => {
-        item.percent = item.size / total;
-    });
+    const languages = Util.getLanguages(nodes);
 
     const name = Util.getValue(res, 'data.data.user.name');
 
