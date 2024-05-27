@@ -254,10 +254,11 @@ const getSvg = (targetName, data, options) => {
     const sw = Math.abs(Util.toNum(options.width, true));
     const padding = 15;
 
-    const label = Util.replace(options.label, {
+    let label = Util.replace(options.label, {
         total: languages.length,
         name: data.name || targetName
     });
+    label = Util.xmlEscape(label);
 
     // bar
     const bw = sw - 2 * padding;

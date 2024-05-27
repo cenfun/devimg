@@ -206,10 +206,11 @@ const getSvg = (targetName, data, options) => {
     const sw = Math.abs(Util.toNum(options.width, true));
     const padding = 15;
 
-    const label = Util.replace(options.label, {
+    let label = Util.replace(options.label, {
         total: data.total.toLocaleString(),
         name: data.name || targetName
     });
+    label = Util.xmlEscape(label);
 
     // chart
     const cy = 40;

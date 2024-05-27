@@ -177,10 +177,11 @@ const getSvg = (targetName, data, options) => {
     const padding = 15;
     let sh = padding;
 
-    const label = Util.replace(options.label, {
+    let label = Util.replace(options.label, {
         bio: data.bio || targetName,
         name: data.name || targetName
     });
+    label = Util.xmlEscape(label);
 
     const joined = `Joined GitHub ${Util.ago(data.createdAt)}`;
     const titleLeft = padding * 2 + avatarSize;

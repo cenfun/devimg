@@ -95,6 +95,7 @@ const getSvg = (targetName, data, options) => {
         label = Util.replace(options.label, {
             total: totalStr
         });
+        label = Util.xmlEscape(label);
 
         // data max
         const { downloads } = data;
