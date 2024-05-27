@@ -19,7 +19,7 @@ const getLanguages = async (targetName) => {
           query userInfo($login: String!) {
             user(login: $login) {
               name
-              repositories(ownerAffiliations: OWNER, isFork: false, first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {
+              repositories(ownerAffiliations: OWNER, isFork: false, first: 100, orderBy: {direction: DESC, field: STARGAZERS}) {
                 nodes {
                   languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                     edges {

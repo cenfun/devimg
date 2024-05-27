@@ -188,14 +188,14 @@ const getTopLanguages = (languages) => {
     const list = [];
     let per = 0;
     for (let i = 0; i < languages.length; i++) {
+        if (i > 1 || per > 0.8) {
+            break;
+        }
         const lang = languages[i];
         per += lang.percent;
         list.push(lang.name);
-        if (i >= 1 || per > 0.8) {
-            break;
-        }
+        // console.log(lang, i, per);
     }
-
     return `${list.join('/')} ${Math.round(per * 100)}%`;
 };
 
